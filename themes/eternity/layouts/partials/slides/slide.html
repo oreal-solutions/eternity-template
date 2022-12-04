@@ -1,0 +1,60 @@
+{{ $imgs := slice }}
+{{ range $i, $image := .ctx.Params.images }}
+	{{ $scratch := newScratch }}
+	{{ $row := dict "images" (slice $image) }}
+	{{ partial "helpers/get" (dict "scratch" $scratch "row" $row) }}
+	{{ $imgs = $imgs | append ($scratch.Get "img") }}
+{{ end }}
+
+{{ $includesInfo := false }}
+{{ if or (and (gt (len $imgs) 1) (not .ctx.Params.multipleColumn)) (gt (len .ctx.Content) 0) }}
+	{{ $includesInfo = true }}
+{{ end }}
+<div class="slide" {{ if $includesInfo }} info="true" {{ end }} path="{{ $.ctx.Page.RelPermalink }}">
+	<div>
+		<div class="slide-imgs {{ if not $.disableFullheight }} fullheight {{end}}">
+			<div>
+				{{ if not .ctx.Site.Params.MoveIt }}
+					{{ if not .ctx.Params.hideTitle }}
+						<div class="center column slide-meta-title">
+							<a class="a-clean" href="{{ .ctx.Page.RelPermalink }}">{{ .ctx.Title }}</a>
+						</div>
+					{{ end }}
+				{{ end }}
+				<div {{ if .ctx.Params.multipleColumn }} class="columns center" {{ end }}>
+					{{ range $i, $img := $imgs }}
+						<div {{ if $.ctx.Params.multipleColumn }} class="column" {{ end }}>
+							<img src="{{ $img.RelPermalink }}" loading="lazy" width="{{ $img.Width }}" height="{{ $img.Height }}" />
+						</div>
+					{{ end }}
+				</div>
+				{{ if not .ctx.Site.Params.MoveIt }}
+					{{ partial "slides/meta" (dict "imgs" $imgs "ctx" .ctx) }}
+				{{ end }}
+			</div>
+		</div>
+
+		<div class="center">
+			<div class="slide-info">
+				<div class="content {{ if not $.disableFullheight }} margin-bottom-50 {{ end }}">
+					{{ if .ctx.Site.Params.MoveIt }}
+						{{ if not .ctx.Params.hideTitle }}
+							<div class="text-center">
+								<a class="a-clean" href="{{ .ctx.Page.RelPermalink }}">
+									<h1>{{ .ctx.Title }}</h1>
+								</a>
+							</div>
+						{{ end }}
+						{{ partial "slides/meta" (dict "imgs" $imgs "ctx" .ctx) }}
+					{{ end }}
+					{{ if not .ctx.Params.hideExif }}
+						{{ with (index $imgs 0).Exif }}
+							{{ partial "helpers/exif.html" . }}
+						{{ end }}
+					{{ end }}
+					{{ .ctx.Content }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

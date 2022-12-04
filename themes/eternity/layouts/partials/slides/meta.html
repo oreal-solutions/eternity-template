@@ -1,0 +1,36 @@
+<div class="center">
+    <div class="slide-meta columns is-mobile">
+        {{ $tags := .ctx.Params.tags }}
+        {{ if $tags }}
+            <div class="center column slide-meta-el">
+                <div class="slide-tags">
+                    {{ $specials := slice "work" "archive" }}
+                    {{ with .ctx.Site.Params.SpecialPages }}
+                        {{ $specials = . }}
+                    {{ end }}
+                    {{ range $i, $tag := $tags }}
+                        {{ if not (in $specials $tag) }}
+                            <a class="grey" href={{ printf "tags/%s" $tag | absURL }}>#{{ $tag }}</a>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+
+        {{ if not .ctx.Params.hideDate }}
+            {{ if .ctx.Params.Date }}
+                <div class="center column slide-meta-el grey">
+                    <p>{{ .ctx.Page.Date | time.Format ":date_long" }}</p>
+                </div>
+            {{ else }}
+                {{ with (index $.imgs 0).Exif }}
+                    {{ with .Date }}
+                        <div class="center column slide-meta-el grey">
+                            <p>{{ . | time.Format ":date_long" }}</p>
+                        </div>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </div>
+</div>

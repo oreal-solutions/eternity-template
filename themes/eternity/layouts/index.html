@@ -1,0 +1,48 @@
+{{ partial "header.html" . }}
+
+{{ if .Site.Params.BypassWelcomePage }}
+<head>
+	<meta http-equiv="refresh" content="0; URL={{ relref . .Site.Params.Homepage }}" />
+</head>
+{{ else }}
+<section class="hero is-fullheight welcome"
+	style="background-image: url({{ "background.jpeg" | absURL }});">
+	{{ partial "navbar.html" . }}
+	<div class="hero-body has-text-centered">
+		<div class="container">
+			<div class="enter">
+				<button onclick="window.location.href='{{ relref . .Site.Params.Homepage }}'"
+				class="button is-white is-large is-outlined">enter</button>
+			</div>
+			{{ with .Params.FeaturedTags }}
+				<div class="columns is-mobile is-multiline">
+					{{ range . }}
+						<div class="column">
+							<a href="{{ .url }}">
+								<div class="image-box">
+									{{ $scratch := newScratch }}
+									{{ $row := dict "images" (slice .image) }}
+									{{ partial "helpers/get" (dict "scratch" $scratch "row" $row) }}
+									{{ $image := $scratch.Get "img" }}
+									{{ with $image }}
+									<img src="{{ $image.RelPermalink }}" loading="lazy" />
+									{{end}}
+								</div>
+								<p>{{ .title }}</p>
+							</a>
+						</div>
+					{{ end }}
+				</div>
+			{{ end }}
+			{{ range $d := .Params.Desc }}
+				<p>{{ $d }}</p>
+			{{ end }}
+		</div>
+	</div>
+	<div class="welcome-end">
+		{{ partial "footer_base.html" . }}
+	</div>
+</section>
+{{ end }}
+
+{{ partial "footer.html" . }}
