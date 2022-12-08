@@ -2,3 +2,5 @@
 /node_modules
 /content/work/posts/*
 /assets/images
+/public
+/resources/_gen
