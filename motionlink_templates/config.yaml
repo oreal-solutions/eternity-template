@@ -1,4 +1,4 @@
-baseURL: "{{{otherData.NETLIFY_SITE_URL}}}"
+baseURL: "https://eternity-template.netlify.app"
 title: "{{{otherData.siteTitle}}}"
 defaultContentLanguage: 'en'
 theme: eternity
