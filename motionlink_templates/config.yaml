@@ -1,4 +1,4 @@
-baseURL: ""
+baseURL: "{{{otherData.NETLIFY_SITE_URL}}}"
 title: "{{{otherData.siteTitle}}}"
 defaultContentLanguage: 'en'
 theme: eternity
