@@ -1,0 +1,59 @@
+baseURL: "{{{otherData.NETLIFY_SITE_URL}}}"
+title: "{{{otherData.siteTitle}}}"
+defaultContentLanguage: 'en'
+theme: eternity
+googleAnalytics: '{{{otherData.googleAnalyticsId}}}'
+
+params:
+  image: /images/banner.png
+  subtitle: "{{{otherData.subtitle}}}"
+  copyright: All rights reserved.
+  author: "{{{otherData.author}}}"
+  dontShowSource: true
+  portfolio:
+    columns:
+      desktop:
+        nature: 4
+        archive: 6
+        people: 2
+        default: 3
+      mobile:
+        default: 2
+        archive: 3
+        people: 1
+  socials:
+  {{#otherData.socials}}
+    - icon: '{{{icon}}}'
+      url: '{{{url}}}'
+      landing: true  
+  {{/otherData.socials}}
+
+  homepage: "/work" # homepage link, mostly same with menu.main[0]
+  specialPages:
+    - work
+    - archive
+  bypassWelcomePage: false # redirects "/" to "homepage" when it's true.
+  plausible: '{{{otherData.plausibleAnalyticsId}}}'
+  disableRadius: false
+  moveIt: false  # Moves Title and Meta info down, only visible when scroll.
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      unsafe: true
+
+taxonomies:
+  tag: tags
+
+permalinks:
+  work: ":filename/"
+
+menu:
+  main:
+  {{#otherData.menuItems}}
+    - name: {{{name}}}
+      url: {{{url}}}
+      weight: {{weight}}    
+  {{/otherData.menuItems}}
+    

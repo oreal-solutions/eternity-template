@@ -1,15 +1,15 @@
-baseURL: https://eternity.bora.sh # todo: change site url.
-title: Eternity # todo: change site name.
+baseURL: ""
+title: "Eternity"
 defaultContentLanguage: 'en'
 theme: eternity
-googleAnalytics: '' # todo: set your analytics id.
+googleAnalytics: ''
 
 params:
   image: /images/banner.png
-  subtitle: Eternity is a minimalist Hugo theme designed for portfolio sites with a fresh feel. # todo: change default subtitle for your website.
-  copyright: All rights reserved. # todo: set your copyright type.
-  author: Lovely Author # todo: set your full name.
-  dontShowSource: false # please, do not do this :)
+  subtitle: "Rethinking light and photography. Photographer in Cape Town."
+  copyright: All rights reserved.
+  author: "John Love"
+  dontShowSource: true
   portfolio:
     columns:
       desktop:
@@ -22,23 +22,25 @@ params:
         archive: 3
         people: 1
   socials:
-    # todo: change these links.
     - icon: 'far fa-envelope fa-lg'
-      url: 'mailto:eternity@bora.sh'
-      landing: true
-    - icon: 'fab fa-github fa-lg'
-      url: 'https://github.com/boratanrikulu/eternity'
-      landing: true
+      url: 'mailto:hi@example.com'
+      landing: true  
     - icon: 'fab fa-instagram fa-lg'
-      url: 'https://instagram.bora.sh/eternity'
-    - icon: 'fab fa-linkedin-in fa-lg'
-      url: 'https://linkedin.bora.sh/in/eternity'
+      url: 'https://twitter.com/orealmotionlink'
+      landing: true  
+    - icon: 'fab fa-youtube fa-lg'
+      url: 'https://twitter.com/orealmotionlink'
+      landing: true  
+    - icon: 'fab fa-linkedin fa-lg'
+      url: 'https://twitter.com/orealmotionlink'
+      landing: true  
+
   homepage: "/work" # homepage link, mostly same with menu.main[0]
   specialPages:
     - work
     - archive
   bypassWelcomePage: false # redirects "/" to "homepage" when it's true.
-  plausible: '' # todo: set your plausible id.
+  plausible: ''
   disableRadius: false
   moveIt: false  # Moves Title and Meta info down, only visible when scroll.
 
@@ -58,16 +60,26 @@ menu:
   main:
     - name: work
       url: /work/
-      weight: 1
-    - name: people
-      url: /tags/people/
-      weight: 2
-    - name: nature
-      url: /tags/nature/
-      weight: 3
+      weight: 1    
     - name: archive
       url: /tags/archive/
-      weight: 4
+      weight: 2    
+    - name: people
+      url: /tags/people/
+      weight: 3    
+    - name: work
+      url: /tags/work/
+      weight: 4    
+    - name: holo
+      url: /tags/holo/
+      weight: 5    
+    - name: space
+      url: /tags/space/
+      weight: 6    
+    - name: nature
+      url: /tags/nature/
+      weight: 7    
     - name: about
       url: /about/
-      weight: 5
+      weight: 8    
+    
