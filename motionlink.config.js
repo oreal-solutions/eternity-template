@@ -172,7 +172,6 @@ const rules = [
       map: (page, context) => {
         page._title = "config";
         page.otherData.NETLIFY_SITE_URL = process.env.NETLIFY_SITE_URL;
-        console.log(process.env.NETLIFY_SITE_URL);
         page.otherData = {
           ...page.otherData,
           ...context.others.siteConfiguration.pages[0].otherData,
