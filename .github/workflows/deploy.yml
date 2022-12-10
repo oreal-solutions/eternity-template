@@ -14,10 +14,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          touch .env
+          echo NETLIFY_SITE_URL=${{ secrets.NETLIFY_SITE_URL }} >> .env      
       - run: npm ci && npx motionlink ${{ secrets.MOTION_LINK_VARS }}
       - uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.89.4"
+          hugo-version: "0.107.0"
           extended: true
       - run: hugo --minify
       - uses: jsmrcaga/action-netlify-deploy@v1.6.0
